@@ -17,6 +17,7 @@ function GetMergeDataSet() {
     var year = dataset[i].year;
     var number = dataset[i].number;
     // console.log('name:', name, ', year:', year, 'number:', number);
+    //console.log(i);
     var key = name + '_' + year;
     if(!(key in newDataSet)){
       newDataSet[key] = {
@@ -27,6 +28,14 @@ function GetMergeDataSet() {
     }
     newDataSet[key].number += number;
   }
+  //--- doing this to get the same format as the output of d3.tsv
+  //console.log(newDataSet);
+  res = [];
+  for(var i in newDataSet){
+    res.push(newDataSet[i]);
+  }
+  newDataSet = res;
+  //---
   return newDataSet;
 }
 
@@ -79,43 +88,29 @@ d3.tsv("data/nat1900-2017.tsv", (d, i) => {
       // //console.log("Last row: ", dataset[dataset.length-1]);
 
       currentYear = dataset[0].year;
+      //console.log(dataset[0]);
       //console.log("currentYear: ", currentYear);
       hasLoadData = true;
       newDataSet = GetMergeDataSet();
-      // console.log(newDataSet);
-      // console.log(newDataSet['A_1980']);
+      newDataSet.sort(function(x , y){
+        return d3.ascending(x.year, y.year);
+      });
+      /*newDataSet.forEach(function(e){
+        if (e.name == "JEANNE")
+          console.log(e);
+      })*/
+      //console.log(newDataSet);
+      //console.log(newDataSet['MARIE_1900']);
 
       //group the data, draw one line per group
-      sumstat = d3.group(dataset, d => d.name);
-      //console.log(sumstat);
-
-      // TODO: merge rows without considering gender
-      // temp = Array.from(d3.rollup(
-      //   dataset,
-      //   sumstat => {
-      //     const reduce = {...sumstat[0], gender: 0, number: 0};
-      //     for (const {number} of sumstat) {
-      //       reduce.number += number;
-      //     }
-      //     return reduce;
-      //   },
-      //   d => d.name,
-      //   d => d.year
-      // ));
-
-      // temp.forEach(function(e){
-      //   console.log(Array.from(e[1]));
-      // });
-      //console.log(temp);
-
-      // -----------
+      sumstat = d3.group(newDataSet, d => d.name);
 
       xScale = d3.scaleLinear()
-            .domain(d3.extent(dataset, (d) => d.year))
+            .domain(d3.extent(newDataSet, (d) => d.year))
             .range([marginLeft, width]);
 
       yScale = d3.scaleLinear()
-            .domain(d3.extent(dataset, (d) => d.number))
+            .domain(d3.extent(newDataSet, (d) => d.number))
             .range([height - marginBottom, 0]);
 
       xAxis = d3.axisBottom(xScale)
@@ -144,6 +139,7 @@ function lineChart(){
       .data(sumstat)
       .join("path")
         .attr("fill", "none")
+        //.attr("id", function(d) { return "line-"+ d.name;})
         .attr("stroke", "lightgrey")
         .attr("stroke-width", 1.5)
         .attr("d", function(d){
@@ -184,5 +180,10 @@ function lineChart(){
 }
 
 function searchByName(){
-
+  const val = (document.getElementById('searchName').value).toUpperCase();
+  console.log(val);
+  if (newDataSet.filter(e => (e.name).toUpperCase() === val).length > 0){
+  //  console.log(d3.selectAll("path"));
+      //.style("stroke", "#2596be");
+  }
 }
