@@ -7,6 +7,29 @@ var marginLeft = 100;
 var marginRight = 100;
 var marginBottom = 100;
 
+// key is name+'_'+year
+// value is data {name, year, number}
+function GetMergeDataSet() {
+  newDataSet = {}; // not considering gender&year
+
+  for(var i in dataset){
+    var name = dataset[i].name;
+    var year = dataset[i].year;
+    var number = dataset[i].number;
+    // console.log('name:', name, ', year:', year, 'number:', number);
+    var key = name + '_' + year;
+    if(!(key in newDataSet)){
+      newDataSet[key] = {
+        'name': name,
+        'year': year,
+        'number': 0 // if not exist in dict, just create initial data with number = 0
+      };
+    }
+    newDataSet[key].number += number;
+  }
+  return newDataSet;
+}
+
 let svg = d3.select("body")
             .append("svg")
             .attr("width", width)
@@ -58,28 +81,31 @@ d3.tsv("data/nat1900-2017.tsv", (d, i) => {
       currentYear = dataset[0].year;
       //console.log("currentYear: ", currentYear);
       hasLoadData = true;
+      newDataSet = GetMergeDataSet();
+      // console.log(newDataSet);
+      // console.log(newDataSet['A_1980']);
 
       //group the data, draw one line per group
       sumstat = d3.group(dataset, d => d.name);
       //console.log(sumstat);
 
       // TODO: merge rows without considering gender
-      temp = Array.from(d3.rollup(
-        dataset,
-        sumstat => {
-          const reduce = {...sumstat[0], gender: 0, number: 0};
-          for (const {number} of sumstat) {
-            reduce.number += number;
-          }
-          return reduce;
-        },
-        d => d.name,
-        d => d.year
-      ));
+      // temp = Array.from(d3.rollup(
+      //   dataset,
+      //   sumstat => {
+      //     const reduce = {...sumstat[0], gender: 0, number: 0};
+      //     for (const {number} of sumstat) {
+      //       reduce.number += number;
+      //     }
+      //     return reduce;
+      //   },
+      //   d => d.name,
+      //   d => d.year
+      // ));
 
-      temp.forEach(function(e){
-        console.log(Array.from(e[1]));
-      });
+      // temp.forEach(function(e){
+      //   console.log(Array.from(e[1]));
+      // });
       //console.log(temp);
 
       // -----------
