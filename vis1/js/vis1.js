@@ -61,7 +61,28 @@ d3.tsv("data/nat1900-2017.tsv", (d, i) => {
 
       //group the data, draw one line per group
       sumstat = d3.group(dataset, d => d.name);
-      console.log(sumstat);
+      //console.log(sumstat);
+
+      // TODO: merge rows without considering gender
+      temp = Array.from(d3.rollup(
+        dataset,
+        sumstat => {
+          const reduce = {...sumstat[0], gender: 0, number: 0};
+          for (const {number} of sumstat) {
+            reduce.number += number;
+          }
+          return reduce;
+        },
+        d => d.name,
+        d => d.year
+      ));
+
+      temp.forEach(function(e){
+        console.log(Array.from(e[1]));
+      });
+      //console.log(temp);
+
+      // -----------
 
       xScale = d3.scaleLinear()
             .domain(d3.extent(dataset, (d) => d.year))
@@ -100,9 +121,10 @@ function lineChart(){
         .attr("stroke", "lightgrey")
         .attr("stroke-width", 1.5)
         .attr("d", function(d){
+          //console.log(d);
           return d3.line()
             .x(function(d) {
-              if(d.name == "MARIE") console.log(d);
+              //if(d.name == "MARIE") console.log(d);
               return xScale(d.year); })
             .y(function(d) { return yScale(d.number); })
             (d[1])
