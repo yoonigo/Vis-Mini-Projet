@@ -114,7 +114,8 @@ d3.tsv("data/nat1900-2017.tsv", (d, i) => {
             .range([height - marginBottom, 0]);
 
       xAxis = d3.axisBottom(xScale)
-                .ticks(width / 100);
+                .ticks(width / 100)
+                .tickFormat(d3.format("d"));
 
       yAxis = d3.axisLeft(yScale)
                 .ticks(height / 60);
