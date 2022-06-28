@@ -13,12 +13,20 @@ How do baby names evolve over time? Are there names that have consistently remai
 Is there a regional effect in the data? Are some names more popular in some regions? Are popular names generally popular across the whole country?
 #
 Our visualization has two types of input, a date and a name, and it offers two possibilities to visualize the data: 
-The first is to choose only the year without the name, by doing this, each department in the map will be filled with the color of the popular name in that department and in the selected year (there is a legend on the right), if the user hovers over a department, he will be able to see more details such as the name of the department, the code and the popular name.
+The first is to choose only the year without the name, by doing this, each department in the map will be filled with the color of the popular name in that department and in the selected year (there is a legend on the right).
+#
 ![Visualisation 2](./Visualisation/Vis2-1.png)
+#
+ If the user hovers over a department, he will be able to see more details such as the name of the department, the code and the popular name.
+#
 ![Visualisation 2](./Visualisation/vis-5.png)
  
-The second one is to choose the year and the name, with these two entries, the map will show the distribution of this name by department. As we can see in the image below, the regions with dark colors have had several births of the chosen name in the selected year. And also, if the user hovers over a department, he will be able to see more details like the department name, code and name, and the number of births.
+The second one is to choose the year and the name, with these two entries, the map will show the distribution of this name by department. As we can see in the image below, the regions with dark colors have had several births of the chosen name in the selected year.
+#
 ![Visualisation 2](./Visualisation/vis-2.png)
+#
+ And also, if the user hovers over a department, he will be able to see more details like the department name, code and name, and the number of births.
+ #
 ![Visualisation 2](./Visualisation/vis2-3.png)
 
 ###Problem solved:
