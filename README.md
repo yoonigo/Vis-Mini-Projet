@@ -2,10 +2,13 @@
 ## Visualization 1 (D3) :
 How do baby names evolve over time? Are there names that have consistently remained popular or unpopular? Are there some that were suddenly or briefly popular or unpopular? Are there trends in time?
 #
-![Visualisation 1](./Visualisation/VIS1.png)
+![Visualisation 1](./Visualisation/visu1.png)
 
-
-
+For the first visualization, we implemented an interactive line chart with the national database. The x axis represents the year and the y axis corresponds to the number of names. The lines represent a name and are grayed out. When the mouse hovers over one line, its color changes to blue and the corresponding name appears in a tooltip.
+This visualization can precisely show the evolution of the popularity of a name, and also help identify the most popular names for each year, if it was briefly or not, and names that have been consistently popular. Thus, we can identify some trends in time.
+However, our visualization is lacking in some ways. A lot of lines are layered between 0 and 10 000 and don't allow you to directly spot the allure of each line. The unpopular names cannot be spotted without having to hover and search for them.
+We wanted to compensate for this disadvantage by adding an input text area to enter a name and highlight the line automatically in the visualization, but it was not possible to make it work correctly because of the size of the dataset.
+Another solution that alleviates the visualization would have been to add a functionality to show the evolution over time of only the 10 or 30 most popular names and most unpopular names for a given year.
 
 
 ## The second visualisation (Altair):
@@ -46,4 +49,5 @@ So we answer: Is there a regional effect in the data? Are certain names more pop
 
 ## The third visualisation (Tableau):
 Are there gender effects in the data? Does popularity of names given to both sexes evolve consistently?
-![Visualisation 3](./Visualisation/vis3.png)
+![Visualisation 3](./Visualisation/vis3-1.png)
+![Visualisation 3](./Visualisation/vis3-2.png)
