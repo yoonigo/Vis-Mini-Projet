@@ -11,7 +11,7 @@ How do baby names evolve over time? Are there names that have consistently remai
 ## The second visualisation (Altair):
 
 Is there a regional effect in the data? Are some names more popular in some regions? Are popular names generally popular across the whole country?
-#
+</br>
 Our visualization has two types of input, a date and a name, and it offers two possibilities to visualize the data: 
 The first is to choose only the year without the name, by doing this, each department in the map will be filled with the color of the popular name in that department and in the selected year (there is a legend on the right).
 #
