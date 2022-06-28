@@ -2,7 +2,7 @@
 ## Visualization 1 (D3) :
 How do baby names evolve over time? Are there names that have consistently remained popular or unpopular? Are there some that were suddenly or briefly popular or unpopular? Are there trends in time?
 
-![Visualisation 1](./Visualisation/VIS1.png){width=50}
+![Visualisation 1](./Visualisation/VIS1.png=100x20)
 
 
 
