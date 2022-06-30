@@ -50,4 +50,8 @@ So we answer: Is there a regional effect in the data? Are certain names more pop
 ## The third visualisation (Tableau):
 Are there gender effects in the data? Does popularity of names given to both sexes evolve consistently?
 ![Visualisation 3](./Visualisation/vis3-1.png)
-![Visualisation 3](./Visualisation/vis3-2.png)
+![Visualisation 3](./Visualisation/vis3-2.PNG)
+
+This visualization answers of all the questions. It shows gender effects because we can see the pie chart of boys and girls by year. When we select a name we can see the pie chart of the selected name and the ratio and count between two sexes.
+Concerning the evolution of the popularity of names given to both sexes, we added a slider that allows us to change the years and show the data accordingly, hence we can see if the evolution of the names for both sexes is consistent or not. 
+
